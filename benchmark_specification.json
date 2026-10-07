@@ -1,0 +1,417 @@
+[
+  {
+    "field_name": "Workload Number",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "401"
+  },
+  {
+    "field_name": "Workload Name",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "System Config Verification"
+  },
+  {
+    "field_name": "GPU Vendor",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "NVIDIA"
+  },
+  {
+    "field_name": "Repo Name",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "sys-bench-nvidia-cuda-stack-validation-ubu2604"
+  },
+  {
+    "field_name": "Main Goal",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Analyze NVIDIA CUDA software stack consistency against yaml expectations"
+  },
+  {
+    "field_name": "Validation Objective",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Validates NVIDIA driver, CUDA major version, VBIOS presence, listed dpkg packages, and /dev/nvidia* device-node permissions. Does not run DCGM"
+  },
+  {
+    "field_name": "Metrics",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "#1: CUDA pkg mismatches (cuda_package_version_mismatches_count); #2: Kernel module/driver version mismatches (nvidia_kernel_module_driver_version_mismatches_count); #3: Driver version compliance percent (driver_compliance_percent); #4: VBIOS string present (vbios_string_present); #5: Device permission error count (required_library_path_device_permission_errors)"
+  },
+  {
+    "field_name": "Command Tools Executed",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Run nvidia-smi, nvidia-smi -q, nvcc --version, and dpkg-query, then check /dev/nvidia* permissions"
+  },
+  {
+    "field_name": "Command Execution Details and Purpose",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Run nvidia-smi, nvidia-smi -q, nvcc --version, dpkg-query, and /dev/nvidia* permission checks, then compare Driver Version, CUDA Version (major), VBIOS Version, required packages, and device-node access to yaml expectations, to measure CUDA stack compliance"
+  },
+  {
+    "field_name": "Command Methodology",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Query nvidia-smi, nvidia-smi -q, nvcc --version, and dpkg-query, check /dev/nvidia* permissions, and compare Driver Version, CUDA major version, VBIOS, required packages, and device-node access to yaml expectations. DCGM is not invoked"
+  },
+  {
+    "field_name": "Execution Description With Parameters",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Compares the live NVIDIA CUDA stack against yaml expectations and emits one CSV row. kernel_version: expected uname -r prefix. nvidia_driver_version: substring of nvidia-smi Driver Version. cuda_version: CUDA major from nvidia-smi, falling back to nvcc --version. VBIOS must be present in nvidia-smi -q. required_packages: dpkg-query names. permissions_check: readable and writable /dev/nvidia* device nodes; directories such as /dev/nvidia-caps are skipped. DCGM is not invoked. output_format: csv"
+  },
+  {
+    "field_name": "Execution Domain",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Validation / Correctness"
+  },
+  {
+    "field_name": "Workload Category",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "System Validation & Reliability"
+  },
+  {
+    "field_name": "Workload Type",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Test"
+  },
+  {
+    "field_name": "Target Hardware",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "CPU"
+  },
+  {
+    "field_name": "GPU Model",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "H100 SXM 80GB"
+  },
+  {
+    "field_name": "Raw Output Format",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "CSV with one row per CUDA stack check. A single row is duplicated to two samples"
+  },
+  {
+    "field_name": "Primary Record Granularity",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "one CSV row per stack check"
+  },
+  {
+    "field_name": "Raw Output Example",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "sample_index,status,cuda_package_version_mismatches_count,cuda_major_version_mismatch_count,nvidia_kernel_module_driver_version_mismatches_count,vbios_string_present,driver_compliance_percent,required_library_path_device_permission_errors,error_message\n0,ok,0,0,0,1,100,0,"
+  },
+  {
+    "field_name": "run_benchmark Command Plus Options for Smoke Run",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "bash run_benchmark.sh --smoke --validate --kernel-version 7.0.0 --nvidia-driver-version 580 --cuda-version 13.3 --vbios-inforom-versions present --required-packages cuda-toolkit,nvidia-smi --permissions-check true --output-format csv"
+  },
+  {
+    "field_name": "run_benchmark Command Plus Options for Baseline Run",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "bash run_benchmark.sh --baseline --validate --kernel-version 7.0.0 --nvidia-driver-version 580 --cuda-version 13.3 --vbios-inforom-versions present --required-packages cuda-toolkit,nvidia-smi --permissions-check true --output-format csv"
+  },
+  {
+    "field_name": "run_benchmark Command Plus Options for Extended Run",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "bash run_benchmark.sh --extended --validate --kernel-version 7.0.0 --nvidia-driver-version 580 --cuda-version 13.3 --vbios-inforom-versions present --required-packages cuda-toolkit,nvidia-smi --permissions-check true --output-format csv"
+  },
+  {
+    "field_name": "Output Fields / Metrics to Parse",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "cuda_package_version_mismatches_count, cuda_major_version_mismatch_count, nvidia_kernel_module_driver_version_mismatches_count, vbios_string_present, driver_compliance_percent, required_library_path_device_permission_errors"
+  },
+  {
+    "field_name": "Success Criteria",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "status=ok, which requires a VBIOS string and zero kernel-module/driver mismatches, and the yaml gates accept the CSV metrics"
+  },
+  {
+    "field_name": "Parser and Normalization Notes",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "parse_results.py reads the CSV, strips ANSI, and requires at least one data row. cuda_major_version_mismatch_count is separate from the package-mismatch count. A single host-check row is written twice. nvidia-smi, nvidia-smi -q, and nvcc transcripts are not the metric source"
+  },
+  {
+    "field_name": "Hardware Config",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "NVIDIA H100 SXM host (20+ vCPUs, 128+ GB RAM, local NVMe), 1x H100 SXM (80 GB HBM3, sm_90, 132 SMs)"
+  },
+  {
+    "field_name": "GPU Architecture",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "sm_90 (NVIDIA Hopper H100)"
+  },
+  {
+    "field_name": "Framework",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Bash, SQLite, Python, PyYAML, CUDA Runtime, NVCC, nvidia-smi"
+  },
+  {
+    "field_name": "OS Version",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Ubuntu 26.04"
+  },
+  {
+    "field_name": "Kernel Version",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "kernel 7.0.0"
+  },
+  {
+    "field_name": "Runtime Language",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Python, C++ (nvidia-smi, nvcc)"
+  },
+  {
+    "field_name": "Container Base Image",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - host-native Ubuntu 26.04"
+  },
+  {
+    "field_name": "Python Version",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Python 3.14.4"
+  },
+  {
+    "field_name": "GPU Runtime Version (was ROCm Version)",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "CUDA 13.3"
+  },
+  {
+    "field_name": "BLAS Version (was rocBLAS version)",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - rocBLAS not used"
+  },
+  {
+    "field_name": "Mistral-7B Version",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - Mistral not used"
+  },
+  {
+    "field_name": "PyTorch Version",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - PyTorch not used"
+  },
+  {
+    "field_name": "torchvision Version",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - torchvision not used"
+  },
+  {
+    "field_name": "vLLM Version",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - vLLM not used"
+  },
+  {
+    "field_name": "vLLM Wheel/Source Index",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - vLLM not used"
+  },
+  {
+    "field_name": "SGLang Version",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - SGLang not used"
+  },
+  {
+    "field_name": "SGLang Repository/Commit",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - SGLang not used"
+  },
+  {
+    "field_name": "Cmake Version",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - CMake not used"
+  },
+  {
+    "field_name": "g++ Version",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - CMake not used"
+  },
+  {
+    "field_name": "Known Runtime Constraints (<=35 Words Each)",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "CUDA mismatch uses the nvidia-smi CUDA Version major, not exact toolkit equality. DCGM is not invoked. nvidia-smi and /dev/nvidia* must be present"
+  },
+  {
+    "field_name": "Parameter_01",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "kernel_version"
+  },
+  {
+    "field_name": "Parameter_02",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "nvidia_driver_version"
+  },
+  {
+    "field_name": "Parameter_03",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "cuda_version"
+  },
+  {
+    "field_name": "Parameter_04",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "vbios_inforom_versions"
+  },
+  {
+    "field_name": "Parameter_05",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "required_packages"
+  },
+  {
+    "field_name": "Parameter_06",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "permissions_check"
+  },
+  {
+    "field_name": "Parameter_07",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "output_format"
+  },
+  {
+    "field_name": "Parameter_08",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "-"
+  },
+  {
+    "field_name": "Parameter_09",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "-"
+  },
+  {
+    "field_name": "Parameter_10",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "-"
+  },
+  {
+    "field_name": "Parameter_11",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "-"
+  },
+  {
+    "field_name": "Parameter_12",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "-"
+  },
+  {
+    "field_name": "Parameter_13",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "-"
+  },
+  {
+    "field_name": "Parameter_14",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "-"
+  },
+  {
+    "field_name": "Parameter_15",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "-"
+  },
+  {
+    "field_name": "Parameter_16",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "-"
+  },
+  {
+    "field_name": "Parameter_17",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "-"
+  },
+  {
+    "field_name": "Parameter_18",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "-"
+  },
+  {
+    "field_name": "Parameter_19",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "-"
+  },
+  {
+    "field_name": "Parameter_20",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "-"
+  },
+  {
+    "field_name": "GPU Architecutre ID",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "sm_90"
+  },
+  {
+    "field_name": "GPU Kernel Execution Runtime (HIP or CUDA)",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "CUDA"
+  },
+  {
+    "field_name": "System Monitoring Tool",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "nvidia-smi / DCGM"
+  },
+  {
+    "field_name": "Validation & Diagnostics Suite",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - NVIDIA DCGM Diagnostics not used"
+  },
+  {
+    "field_name": "Collective Communication Library",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - NCCL not used"
+  },
+  {
+    "field_name": "Convolution or DNN Library",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - cuDNN not used"
+  },
+  {
+    "field_name": "Benchmark Schema Version",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "1.3.0"
+  },
+  {
+    "field_name": "Schema Last Updated",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "2026-09-05"
+  },
+  {
+    "field_name": "Installation and Execution Summary",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Run nvidia-smi, nvidia-smi -q, nvcc --version, dpkg-query, and /dev/nvidia* permission checks, then compare Driver Version, CUDA Version (major), VBIOS Version, required packages, and device-node access to yaml expectations, to measure CUDA stack compliance"
+  },
+  {
+    "field_name": "Workload Command Line Executable",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Run nvidia-smi, nvidia-smi -q, nvcc --version, and dpkg-query, then check /dev/nvidia* permissions"
+  },
+  {
+    "field_name": "ROCm Version",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "CUDA 13.3"
+  },
+  {
+    "field_name": "rocBLAS Version",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "N/A - rocBLAS not used"
+  },
+  {
+    "field_name": "Execution Summary (Run and Measure)",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Run nvidia-smi, nvidia-smi -q, nvcc --version, dpkg-query, and /dev/nvidia* permission checks, then compare Driver Version, CUDA Version (major), VBIOS Version, required packages, and device-node access to yaml expectations, to measure CUDA stack compliance"
+  },
+  {
+    "field_name": "nVidia Porting Instructions (Reference Only)",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Native NVIDIA CUDA workload. Execute on the stated Ubuntu release with the host NVIDIA driver and CUDA userspace. ROCm porting notes do not apply."
+  },
+  {
+    "field_name": "AMD nVidia Applicable",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "NVIDIA"
+  },
+  {
+    "field_name": "Model Context Protocols",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "None"
+  },
+  {
+    "field_name": "Profile Parameter Values",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Parameters_SmokeBaselineExtend",
+    "value": "{\"kernel_version\": {\"smoke\": \"7.0.0\", \"baseline\": \"7.0.0\", \"extended\": \"7.0.0\", \"notes\": \"best-effort: no duration knob; H100 baseline 1s class, 3-4 min not reachable. Knobs unchanged.\"}, \"nvidia_driver_version\": {\"smoke\": \"580\", \"baseline\": \"580\", \"extended\": \"580\", \"notes\": \"\"}, \"cuda_version\": {\"smoke\": \"13.3\", \"baseline\": \"13.3\", \"extended\": \"13.3\", \"notes\": \"\"}, \"required_packages\": {\"smoke\": \"cuda-toolkit,nvidia-smi\", \"baseline\": \"cuda-toolkit,nvidia-smi\", \"extended\": \"cuda-toolkit,nvidia-smi\", \"notes\": \"Sweep/list value. Command column documents it; omit this flag so yaml expands cases.\"}, \"permissions_check\": {\"smoke\": \"true\", \"baseline\": \"true\", \"extended\": \"true\", \"notes\": \"\"}, \"output_format\": {\"smoke\": \"csv\", \"baseline\": \"csv\", \"extended\": \"csv\", \"notes\": \"\"}, \"vbios_inforom_versions\": {\"smoke\": \"present\", \"baseline\": \"present\", \"extended\": \"present\", \"notes\": \"\"}}"
+  },
+  {
+    "field_name": "Profile Command Authorship",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Parameters_SmokeBaselineExtend",
+    "value": "Workload_Definitions run_benchmark command columns are generated from Parameters_SmokeBaselineExtend. Author parameter values on the Parameters_SmokeBaselineExtend sheet only. Do not invent smoke/baseline/extended sweep numbers. Sweep/list flags in the command cells are documentary; omit those flags so config/benchmark_config.yaml expands cases."
+  }
+]
