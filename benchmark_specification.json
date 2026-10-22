@@ -57,7 +57,7 @@
   {
     "field_name": "Execution Description With Parameters",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "Compares the live NVIDIA CUDA stack against yaml expectations and emits one CSV row. kernel_version: expected uname -r prefix. nvidia_driver_version: substring of nvidia-smi Driver Version. cuda_version: CUDA major from nvidia-smi, falling back to nvcc --version. VBIOS must be present in nvidia-smi -q. required_packages: dpkg-query names. permissions_check: readable and writable /dev/nvidia* device nodes; directories such as /dev/nvidia-caps are skipped. DCGM is not invoked. output_format: csv"
+    "value": "Compares the live NVIDIA CUDA stack against yaml expectations and emits one CSV row. kernel_version: expected uname -r prefix. nvidia_driver_version: minimum driver version. Driver version compliance percent is the share of the three driver components (loaded kernel module, nvidia-smi, libcuda) whose version is at or above it, so a newer driver such as 595 is compliant with 580. cuda_version: CUDA major from nvidia-smi, falling back to nvcc --version. VBIOS must be present in nvidia-smi -q. required_packages: dpkg-query names. permissions_check: readable and writable /dev/nvidia* device nodes; directories such as /dev/nvidia-caps are skipped. DCGM is not invoked. output_format: csv"
   },
   {
     "field_name": "Execution Domain",
