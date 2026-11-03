@@ -57,7 +57,7 @@
   {
     "field_name": "Execution Description With Parameters",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "Compares the live NVIDIA CUDA stack against yaml expectations and emits one CSV row. kernel_version: expected uname -r prefix. nvidia_driver_version: minimum driver version. Driver version compliance percent is the share of the three driver components (loaded kernel module, nvidia-smi, libcuda) whose version is at or above it, so a newer driver such as 595 is compliant with 580. cuda_version: CUDA major from nvidia-smi, falling back to nvcc --version. VBIOS must be present in nvidia-smi -q. required_packages: dpkg-query names. permissions_check: readable and writable /dev/nvidia* device nodes; directories such as /dev/nvidia-caps are skipped. DCGM is not invoked. output_format: csv"
+    "value": "Compares the live NVIDIA CUDA stack against yaml expectations and emits one CSV row. kernel_version: expected uname -r prefix. nvidia_driver_version: minimum driver version. Driver version compliance percent is the share of the three driver components (loaded kernel module, nvidia-smi, libcuda) whose version is at or above it, so a newer driver such as 595 is compliant with 580. cuda_version: CUDA major from nvidia-smi, falling back to nvcc --version. VBIOS must be present in nvidia-smi -q. required_packages: dpkg-query names. permissions_check: readable and writable /dev/nvidia* device nodes; directories such as /dev/nvidia-caps are skipped. DCGM is not invoked"
   },
   {
     "field_name": "Execution Domain",
@@ -102,17 +102,17 @@
   {
     "field_name": "run_benchmark Command Plus Options for Smoke Run",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "bash run_benchmark.sh --smoke --validate --kernel-version 7.0.0 --nvidia-driver-version 580 --cuda-version 13.3 --vbios-inforom-versions present --required-packages cuda-toolkit,nvidia-smi --permissions-check true --output-format csv"
+    "value": "bash run_benchmark.sh --smoke --validate --kernel-version 7.0.0 --required-packages cuda-toolkit,nvidia-smi --permissions-check true --nvidia-driver-version 580 --cuda-version 13.3"
   },
   {
     "field_name": "run_benchmark Command Plus Options for Baseline Run",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "bash run_benchmark.sh --baseline --validate --kernel-version 7.0.0 --nvidia-driver-version 580 --cuda-version 13.3 --vbios-inforom-versions present --required-packages cuda-toolkit,nvidia-smi --permissions-check true --output-format csv"
+    "value": "bash run_benchmark.sh --baseline --validate --kernel-version 7.0.0 --required-packages cuda-toolkit,nvidia-smi --permissions-check true --nvidia-driver-version 580 --cuda-version 13.3"
   },
   {
     "field_name": "run_benchmark Command Plus Options for Extended Run",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "bash run_benchmark.sh --extended --validate --kernel-version 7.0.0 --nvidia-driver-version 580 --cuda-version 13.3 --vbios-inforom-versions present --required-packages cuda-toolkit,nvidia-smi --permissions-check true --output-format csv"
+    "value": "bash run_benchmark.sh --extended --validate --kernel-version 7.0.0 --required-packages cuda-toolkit,nvidia-smi --permissions-check true --nvidia-driver-version 580 --cuda-version 13.3"
   },
   {
     "field_name": "Output Fields / Metrics to Parse",
@@ -232,32 +232,32 @@
   {
     "field_name": "Parameter_02",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "nvidia_driver_version"
+    "value": "required_packages"
   },
   {
     "field_name": "Parameter_03",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "cuda_version"
+    "value": "permissions_check"
   },
   {
     "field_name": "Parameter_04",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "vbios_inforom_versions"
+    "value": "nvidia_driver_version"
   },
   {
     "field_name": "Parameter_05",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "required_packages"
+    "value": "cuda_version"
   },
   {
     "field_name": "Parameter_06",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "permissions_check"
+    "value": "-"
   },
   {
     "field_name": "Parameter_07",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "output_format"
+    "value": "-"
   },
   {
     "field_name": "Parameter_08",
@@ -407,7 +407,7 @@
   {
     "field_name": "Profile Parameter Values",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Parameters_SmokeBaselineExtend",
-    "value": "{\"kernel_version\": {\"smoke\": \"7.0.0\", \"baseline\": \"7.0.0\", \"extended\": \"7.0.0\", \"notes\": \"best-effort: no duration knob; H100 baseline 1s class, 3-4 min not reachable. Knobs unchanged.\"}, \"nvidia_driver_version\": {\"smoke\": \"580\", \"baseline\": \"580\", \"extended\": \"580\", \"notes\": \"\"}, \"cuda_version\": {\"smoke\": \"13.3\", \"baseline\": \"13.3\", \"extended\": \"13.3\", \"notes\": \"\"}, \"required_packages\": {\"smoke\": \"cuda-toolkit,nvidia-smi\", \"baseline\": \"cuda-toolkit,nvidia-smi\", \"extended\": \"cuda-toolkit,nvidia-smi\", \"notes\": \"Sweep/list value. Command column documents it; omit this flag so yaml expands cases.\"}, \"permissions_check\": {\"smoke\": \"true\", \"baseline\": \"true\", \"extended\": \"true\", \"notes\": \"\"}, \"output_format\": {\"smoke\": \"csv\", \"baseline\": \"csv\", \"extended\": \"csv\", \"notes\": \"\"}, \"vbios_inforom_versions\": {\"smoke\": \"present\", \"baseline\": \"present\", \"extended\": \"present\", \"notes\": \"\"}}"
+    "value": "{\"kernel_version\": {\"smoke\": \"7.0.0\", \"baseline\": \"7.0.0\", \"extended\": \"7.0.0\", \"notes\": \"best-effort: no duration knob; H100 baseline 1s class, 3-4 min not reachable. Knobs unchanged.\"}, \"required_packages\": {\"smoke\": \"cuda-toolkit,nvidia-smi\", \"baseline\": \"cuda-toolkit,nvidia-smi\", \"extended\": \"cuda-toolkit,nvidia-smi\", \"notes\": \"Sweep/list value. Command column documents it; omit this flag so yaml expands cases.\"}, \"permissions_check\": {\"smoke\": \"true\", \"baseline\": \"true\", \"extended\": \"true\", \"notes\": \"\"}, \"nvidia_driver_version\": {\"smoke\": \"580\", \"baseline\": \"580\", \"extended\": \"580\", \"notes\": \"\"}, \"cuda_version\": {\"smoke\": \"13.3\", \"baseline\": \"13.3\", \"extended\": \"13.3\", \"notes\": \"\"}}"
   },
   {
     "field_name": "Profile Command Authorship",

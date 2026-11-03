@@ -85,7 +85,7 @@ Three operator scripts from [`garys-gpu-benchmarks/gpu-bench-suite`](https://git
 
 ## 1. Overview
 
-Compares the live NVIDIA CUDA stack against yaml expectations and emits one CSV row. kernel_version: expected uname -r prefix. nvidia_driver_version: minimum driver version. Driver version compliance percent is the share of the three driver components (loaded kernel module, nvidia-smi, libcuda) whose version is at or above it, so a newer driver such as 595 is compliant with 580. Sweep dimensions: kernel_version, nvidia_driver_version, cuda_version, vbios_inforom_versions, required_packages, permissions_check, output_format.
+Compares the live NVIDIA CUDA stack against yaml expectations and emits one CSV row. kernel_version: expected uname -r prefix. nvidia_driver_version: minimum driver version. Driver version compliance percent is the share of the three driver components (loaded kernel module, nvidia-smi, libcuda) whose version is at or above it, so a newer driver such as 595 is compliant with 580. Sweep dimensions: kernel_version, required_packages, permissions_check, nvidia_driver_version, cuda_version.
 
 ## 2. What It Validates
 

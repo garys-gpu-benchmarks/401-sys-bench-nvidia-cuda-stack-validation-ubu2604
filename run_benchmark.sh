@@ -46,12 +46,10 @@ Validation and logging:
 
 Workload options:
   --kernel-version <value>            Override kernel_version
-  --nvidia-driver-version <value>            Override nvidia_driver_version
-  --cuda-version <value>            Override cuda_version
-  --vbios-inforom-versions <value>            Override vbios_inforom_versions
   --required-packages <value>            Override required_packages
   --permissions-check <value>            Override permissions_check
-  --output-format <value>            Override output_format
+  --nvidia-driver-version <value>            Override nvidia_driver_version
+  --cuda-version <value>            Override cuda_version
 
 Information:
   --specification               Print this workload's specification and exit
@@ -86,12 +84,10 @@ LOG_LEVEL_VALUE="INFO"
 OUTPUT_FORMAT=""
 SAVE_OPTIONS_FILE=""
 KERNEL_VERSION=""
-NVIDIA_DRIVER_VERSION=""
-CUDA_VERSION=""
-VBIOS_INFOROM_VERSIONS=""
 REQUIRED_PACKAGES=""
 PERMISSIONS_CHECK=""
-OUTPUT_FORMAT=""
+NVIDIA_DRIVER_VERSION=""
+CUDA_VERSION=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -113,12 +109,10 @@ while [[ $# -gt 0 ]]; do
     --output-format) OUTPUT_FORMAT="${2:-}"; shift 2 ;;
     --save-options-file) SAVE_OPTIONS_FILE="${2:-}"; shift 2 ;;
     --kernel-version) KERNEL_VERSION="${2:-}"; shift 2 ;;
-    --nvidia-driver-version) NVIDIA_DRIVER_VERSION="${2:-}"; shift 2 ;;
-    --cuda-version) CUDA_VERSION="${2:-}"; shift 2 ;;
-    --vbios-inforom-versions) VBIOS_INFOROM_VERSIONS="${2:-}"; shift 2 ;;
     --required-packages) REQUIRED_PACKAGES="${2:-}"; shift 2 ;;
     --permissions-check) PERMISSIONS_CHECK="${2:-}"; shift 2 ;;
-    --output-format) OUTPUT_FORMAT="${2:-}"; shift 2 ;;
+    --nvidia-driver-version) NVIDIA_DRIVER_VERSION="${2:-}"; shift 2 ;;
+    --cuda-version) CUDA_VERSION="${2:-}"; shift 2 ;;
     --help|--specification|--matrix-definition) shift ;;
     *) die "Unknown option: $1" ;;
   esac
@@ -158,24 +152,20 @@ PY
 }
 
 KERNEL_VERSION="${KERNEL_VERSION:-$(yaml_get kernel_version)}"
-NVIDIA_DRIVER_VERSION="${NVIDIA_DRIVER_VERSION:-$(yaml_get nvidia_driver_version)}"
-CUDA_VERSION="${CUDA_VERSION:-$(yaml_get cuda_version)}"
-VBIOS_INFOROM_VERSIONS="${VBIOS_INFOROM_VERSIONS:-$(yaml_get vbios_inforom_versions)}"
 REQUIRED_PACKAGES="${REQUIRED_PACKAGES:-$(yaml_get required_packages)}"
 PERMISSIONS_CHECK="${PERMISSIONS_CHECK:-$(yaml_get permissions_check)}"
-OUTPUT_FORMAT="${OUTPUT_FORMAT:-$(yaml_get output_format)}"
+NVIDIA_DRIVER_VERSION="${NVIDIA_DRIVER_VERSION:-$(yaml_get nvidia_driver_version)}"
+CUDA_VERSION="${CUDA_VERSION:-$(yaml_get cuda_version)}"
 OUTPUT_FORMAT="${OUTPUT_FORMAT:-$(yaml_get output_format)}"
 OUTPUT_FORMAT="${OUTPUT_FORMAT:-csv}"
 
 BENCHMARK_RUN_COMMAND="bash run_benchmark.sh --${PROFILE}"
 [[ "${VALIDATE}" -eq 1 ]] && BENCHMARK_RUN_COMMAND+=" --validate"
 [[ -n "${KERNEL_VERSION}" ]] && BENCHMARK_RUN_COMMAND+=" --kernel-version $(printf %q "${KERNEL_VERSION}")"
-[[ -n "${NVIDIA_DRIVER_VERSION}" ]] && BENCHMARK_RUN_COMMAND+=" --nvidia-driver-version $(printf %q "${NVIDIA_DRIVER_VERSION}")"
-[[ -n "${CUDA_VERSION}" ]] && BENCHMARK_RUN_COMMAND+=" --cuda-version $(printf %q "${CUDA_VERSION}")"
-[[ -n "${VBIOS_INFOROM_VERSIONS}" ]] && BENCHMARK_RUN_COMMAND+=" --vbios-inforom-versions $(printf %q "${VBIOS_INFOROM_VERSIONS}")"
 [[ -n "${REQUIRED_PACKAGES}" ]] && BENCHMARK_RUN_COMMAND+=" --required-packages $(printf %q "${REQUIRED_PACKAGES}")"
 [[ -n "${PERMISSIONS_CHECK}" ]] && BENCHMARK_RUN_COMMAND+=" --permissions-check $(printf %q "${PERMISSIONS_CHECK}")"
-[[ -n "${OUTPUT_FORMAT}" ]] && BENCHMARK_RUN_COMMAND+=" --output-format $(printf %q "${OUTPUT_FORMAT}")"
+[[ -n "${NVIDIA_DRIVER_VERSION}" ]] && BENCHMARK_RUN_COMMAND+=" --nvidia-driver-version $(printf %q "${NVIDIA_DRIVER_VERSION}")"
+[[ -n "${CUDA_VERSION}" ]] && BENCHMARK_RUN_COMMAND+=" --cuda-version $(printf %q "${CUDA_VERSION}")"
 set_benchmark_run_command "${BENCHMARK_RUN_COMMAND}"
 
 HOSTNAME_VALUE="$(hostname -s 2>/dev/null || hostname)"
@@ -219,12 +209,10 @@ run_collection() {
   fi
   grep -q -- '--output-format' <<<"${help}" && collect_args+=(--output-format "${OUTPUT_FORMAT}")
   grep -q -- '--kernel-version' <<<"${help}" && collect_args+=(--kernel-version "${KERNEL_VERSION}")
-  grep -q -- '--nvidia-driver-version' <<<"${help}" && collect_args+=(--nvidia-driver-version "${NVIDIA_DRIVER_VERSION}")
-  grep -q -- '--cuda-version' <<<"${help}" && collect_args+=(--cuda-version "${CUDA_VERSION}")
-  grep -q -- '--vbios-inforom-versions' <<<"${help}" && collect_args+=(--vbios-inforom-versions "${VBIOS_INFOROM_VERSIONS}")
   grep -q -- '--required-packages' <<<"${help}" && collect_args+=(--required-packages "${REQUIRED_PACKAGES}")
   grep -q -- '--permissions-check' <<<"${help}" && collect_args+=(--permissions-check "${PERMISSIONS_CHECK}")
-  grep -q -- '--output-format' <<<"${help}" && collect_args+=(--output-format "${OUTPUT_FORMAT}")
+  grep -q -- '--nvidia-driver-version' <<<"${help}" && collect_args+=(--nvidia-driver-version "${NVIDIA_DRIVER_VERSION}")
+  grep -q -- '--cuda-version' <<<"${help}" && collect_args+=(--cuda-version "${CUDA_VERSION}")
 
   printf -v collect_cmd '%q ' "${PYTHON_BIN}" scripts/collect_workload.py "${collect_args[@]}"
   echo "[RUN] ${collect_cmd}"

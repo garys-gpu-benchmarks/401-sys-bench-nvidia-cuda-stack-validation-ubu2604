@@ -2,19 +2,17 @@
 
 ## Execution Description
 
-Compares the live NVIDIA CUDA stack against yaml expectations and emits one CSV row. kernel_version: expected uname -r prefix. nvidia_driver_version: minimum driver version. Driver version compliance percent is the share of the three driver components (loaded kernel module, nvidia-smi, libcuda) whose version is at or above it, so a newer driver such as 595 is compliant with 580. Sweep dimensions: kernel_version, nvidia_driver_version, cuda_version, vbios_inforom_versions, required_packages, permissions_check, output_format.
+Compares the live NVIDIA CUDA stack against yaml expectations and emits one CSV row. kernel_version: expected uname -r prefix. nvidia_driver_version: minimum driver version. Driver version compliance percent is the share of the three driver components (loaded kernel module, nvidia-smi, libcuda) whose version is at or above it, so a newer driver such as 595 is compliant with 580. Sweep dimensions: kernel_version, required_packages, permissions_check, nvidia_driver_version, cuda_version.
 
 ## Parameters
 
 | Parameter | CLI Flag | Tested Values | Default | Description |
 | --- | --- | --- | --- | --- |
 | kernel_version | `--kernel-version` | smoke=7.0.0, baseline=7.0.0, extended=7.0.0 | 7.0.0 | From Parameter list; see Execution Description With Parameters. |
-| nvidia_driver_version | `--nvidia-driver-version` | smoke=580, baseline=580, extended=580 | 580 | From Parameter list; see Execution Description With Parameters. |
-| cuda_version | `--cuda-version` | smoke=13.3, baseline=13.3, extended=13.3 | 13.3 | From Parameter list; see Execution Description With Parameters. |
-| vbios_inforom_versions | `--vbios-inforom-versions` | smoke=present, baseline=present, extended=present | present | From Parameter list; see Execution Description With Parameters. |
 | required_packages | `--required-packages` | smoke=cuda-toolkit,nvidia-smi, baseline=cuda-toolkit,nvidia-smi, extended=cuda-toolkit,nvidia-smi | cuda-toolkit,nvidia-smi | From Parameter list; see Execution Description With Parameters. |
 | permissions_check | `--permissions-check` | smoke=true, baseline=true, extended=true | true | From Parameter list; see Execution Description With Parameters. |
-| output_format | `--output-format` | smoke=csv, baseline=csv, extended=csv | csv | From Parameter list; see Execution Description With Parameters. |
+| nvidia_driver_version | `--nvidia-driver-version` | smoke=580, baseline=580, extended=580 | 580 | From Parameter list; see Execution Description With Parameters. |
+| cuda_version | `--cuda-version` | smoke=13.3, baseline=13.3, extended=13.3 | 13.3 | From Parameter list; see Execution Description With Parameters. |
 
 ## Invocation
 

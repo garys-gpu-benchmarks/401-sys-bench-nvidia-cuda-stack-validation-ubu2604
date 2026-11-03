@@ -9,9 +9,7 @@
 sweep:
   profile: smoke
   kernel_version: 7.0.0
-  nvidia_driver_version: 580
-  cuda_version: 13.3
-  vbios_inforom_versions: present
   required_packages: cuda-toolkit,nvidia-smi
   permissions_check: true
-  output_format: csv
+  nvidia_driver_version: 580
+  cuda_version: 13.3
