@@ -25,6 +25,11 @@
     "value": "sys-bench-nvidia-cuda-stack-validation-ubu2604"
   },
   {
+    "field_name": "Repo Directory Name",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "401-sys-bench-nvidia-cuda-stack-validation-ubu2604"
+  },
+  {
     "field_name": "Main Goal",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
     "value": "Analyze NVIDIA CUDA software stack consistency against yaml expectations"
