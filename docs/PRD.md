@@ -21,7 +21,7 @@ Run nvidia-smi, nvidia-smi -q, nvcc --version, dpkg-query, and /dev/nvidia* perm
 Analyze NVIDIA CUDA software stack consistency against yaml expectations
 
 ## Validation Objective
-Validates NVIDIA driver, CUDA major version, VBIOS presence, listed dpkg packages, and /dev/nvidia* device-node permissions. Does not run DCGM
+Validates NVIDIA driver, CUDA major, VBIOS, packages, and /dev/nvidia* device permissions
 
 ## Workload Category
 System Validation & Reliability
