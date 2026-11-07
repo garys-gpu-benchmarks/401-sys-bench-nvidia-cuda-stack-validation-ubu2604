@@ -16,12 +16,11 @@ capture_benchmark_run_command_submitted "$@"
 
 usage() {
   cat <<'USAGE'
+
 Usage: bash run_benchmark.sh [OPTIONS]
 
 Workload Name:          System Config Verification.
 Main Goal:              Analyze NVIDIA CUDA software stack consistency against yaml expectations.
-Validation Objective:   Validates NVIDIA driver, CUDA major, VBIOS, packages, and /dev/nvidia*
-                        device permissions.
 Command Tools Executed: Run nvidia-smi, nvidia-smi -q, nvcc --version, and dpkg-query, then check
                         /dev/nvidia* permissions.
 
