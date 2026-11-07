@@ -31,9 +31,12 @@ Profiles (default: --smoke):
 
 Parameters (override the profile's value):
   --kernel-version <value>      Shared workload parameter (smoke/baseline/extended: 7.0.0)
-  --required-packages <value>   Shared workload parameter (smoke/baseline/extended: cuda-toolkit,nvidia-smi)
+  --required-packages <value>   Shared workload parameter
+                                  all profiles: cuda-toolkit,nvidia-smi
   --permissions-check <value>   Shared workload parameter (smoke/baseline/extended: true)
-  --nvidia-driver-version <value>  Shared workload parameter (smoke/baseline/extended: 580)
+  --nvidia-driver-version <value>
+                                Shared workload parameter
+                                  all profiles: 580
   --cuda-version <value>        Shared workload parameter (smoke/baseline/extended: 13.3)
 
 General options:
