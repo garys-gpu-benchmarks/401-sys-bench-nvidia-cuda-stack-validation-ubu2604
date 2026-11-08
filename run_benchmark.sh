@@ -19,10 +19,10 @@ usage() {
 
 Usage: bash run_benchmark.sh [OPTIONS]
 
-Workload Name:          System Config Verification.
-Main Goal:              Analyze NVIDIA CUDA software stack consistency against yaml expectations.
+Workload Name:          System Config Verification
+Main Goal:              Analyze NVIDIA CUDA software stack consistency against yaml expectations
 Command Tools Executed: Run nvidia-smi, nvidia-smi -q, nvcc --version, and dpkg-query, then check
-                        /dev/nvidia* permissions.
+                        /dev/nvidia* permissions
 
 Profiles (default: --smoke):
   --smoke                       Run smoke profile
