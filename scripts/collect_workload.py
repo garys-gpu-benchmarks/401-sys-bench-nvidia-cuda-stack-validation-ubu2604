@@ -188,7 +188,6 @@ def write_csv(path, header, rows):
         writer.writerow({"sample_index": index, **row})
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     Path(path).write_text(buf.getvalue(), encoding="utf-8")
-    print(buf.getvalue(), end="")
 
 
 def kernel_release_matches(expected, uname_r):
